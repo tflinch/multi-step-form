@@ -20,3 +20,5 @@ document
   });
 
 showStep(currentStep);
+
+let circle = document.getElementById('step').appendChild();
