@@ -1,0 +1,68 @@
+@layer reset {
+  *,
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+  html {
+    -mo2-text-size-adjust: none;
+    -webkit-text-size-adjust: none;
+    -text-size-adjust: none;
+  }
+  body,
+  h1,
+  h2,
+  h3,
+  h4,
+  p,
+  figure,
+  blockqoute,
+  dl,
+  dd {
+    margin: 0;
+  }
+  body {
+    min-block-size: 100vh;
+    line-height: 1.6;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    text-wrap: balance;
+  }
+  ul {
+    margin: 0;
+  }
+  p,
+  li {
+    text-wrap: pretty;
+  }
+  img,
+  picture {
+    max-inline-size: 100%;
+    display: block;
+  }
+  input,
+  button,
+  textarea,
+  select {
+    font: inherit;
+  }
+
+  form {
+    padding: 1rem 0.5rem;
+  }
+}
+
+@layer base {
+  :root {
+    --clr-purple: linear-gradient(180deg, #845eee 0%, #652cd1 100%);
+    --clr-purple-border: linear-gradient(
+      120deg,
+      rgba(229, 231, 235, 0.5) 0.05%,
+      rgba(229, 231, 235, 0) 25.05%
+    );
+  }
+}
