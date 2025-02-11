@@ -3,9 +3,30 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <title>Multi-step Form</title>
   </head>
   <body>
     <h1>Multi step form</h1>
+    <div class="wrapper">
+      <form action="" id="multstepform">
+        <h2>Register</h2>
+        <div class="input-box">
+          <label for="name">Name</label>
+          <input
+            type="text"
+            name="name"
+            placeholder="Enter your name"
+            required
+          />
+          <label for="email">Email</label>
+          <input type="email" name="email" placeholder="Example@gmail.com" />
+          <button>Continue</button>
+        </div>
+      </form>
+      <div class="tracker">
+        <p>Step 1 of 3</p>
+      </div>
+    </div>
   </body>
 </html>

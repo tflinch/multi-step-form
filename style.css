@@ -64,5 +64,62 @@
       rgba(229, 231, 235, 0.5) 0.05%,
       rgba(229, 231, 235, 0) 25.05%
     );
+    --clr-deep-purple: hsl(222, 36%, 11%);
+    --clr-black: hsl(217, 24%, 17%);
+    --clr-grey: hsl(217, 15%, 28%);
+  }
+  :root {
+    --border-radius-md: 0.5rem;
+    --border-radius-lg: 1rem;
+  }
+  body {
+    background-color: var(--clr-deep-purple);
+    color: white;
+  }
+}
+
+@layer layout {
+  .wrapper {
+    --wrapper-max-width: 420px;
+    max-width: var(--wrapper-max-width);
+    margin-inline: auto;
+    padding-inline: 1rem;
+    box-sizing: content-box;
+  }
+
+  form {
+    background: var(--clr-black);
+    padding: 2rem 1.5rem;
+    border: 0.2rem solid var(--clr-purple-border);
+    border-radius: var(--border-radius-md);
+  }
+  .input-box {
+    display: grid;
+    margin-block: 1rem;
+    input {
+      margin-block: 0.5rem;
+      background: var(--clr-black);
+      border: 0.1rem solid var(--clr-grey);
+      border-radius: var(--border-radius-md);
+      color: white;
+    }
+  }
+
+  button {
+    color: white;
+    background: var(--clr-purple);
+    border-radius: var(--border-radius-lg);
+    border: 0.1rem solid var(--clr-purple);
+    justify-self: center;
+    width: 150px;
+
+    margin-block-start: 1rem;
+    padding: 0.5rem;
+  }
+}
+
+@layer componenet {
+  .tracker {
+    justify-self: center;
   }
 }
