@@ -149,5 +149,6 @@
 
   .active {
     background-color: #845eee;
+    border: 2px solid #bbb;
   }
 }

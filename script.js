@@ -1,6 +1,6 @@
 // my idea is to first check the current values of my input boxes
-const form = document.getElementById('multStepForm');
-const button = document.getElementById('button');
+//notes to self, as i built this out i wasnt sure what was the best way to render elements for the form on to the page. my reminder would be to always create static elments with html 1st. Then do apply styling 2nd. For components that need javascript manipulation. create the elements with javascript first then attach to the document 4. then create global state variables 5. then functions that update 6
+let currentStep = 1;
 let mockSteps = [
   { title: 'Register', name: '', email: '' },
   {
@@ -12,24 +12,47 @@ let mockSteps = [
 
 let state = {};
 
-let currentStep = 1;
+const form = document.getElementById('multStepForm');
+const button = document.getElementById('button');
+
+const tracker = document.querySelector('.tracker');
+const p = document.createElement('p');
+p.innerHTML = `Step ${currentStep} of 3`;
+tracker.append(p);
+for (let i = 1; i < mockSteps.length + 1; i++) {
+  const spanDot = document.createElement('span');
+  spanDot.classList.add('dot');
+  spanDot.dataset.step = i;
+  tracker.append(spanDot);
+}
+
+const spanButtons = document.querySelectorAll('.dot');
 
 function showStep(setp) {
   console.log(setp);
   updateLabels(setp);
+  updateDot();
 }
 
 function nextStep() {
-  checkInputs(currentStep);
-  currentStep++;
-  console.log('Current Step:', currentStep);
-  showStep(currentStep);
-
   //handle next step function
+  if (currentStep < mockSteps.length) {
+    checkInputs(currentStep);
+    currentStep++;
+    console.log('Current Step:', currentStep);
+    updateDot();
+    showStep(currentStep);
+  }
 }
 
 function prevStep() {
   //handles previous step function
+  if (currentStep > 1) {
+    currentStep--;
+    console.log('Current Step', currentStep);
+    updateDot();
+    showStep(currentStep);
+  }
 }
 
 function checkInputs(setp) {
@@ -162,7 +185,12 @@ function verifySelection() {
 
 function updateDot() {
   const dots = document.querySelectorAll('.dot');
-  dots[currentStep - 1].classList.add('active');
+  dots.forEach((element) => {
+    element.classList.remove('active');
+    if (currentStep == element.dataset.step) {
+      element.classList.add('active');
+    }
+  });
 }
 
 form.addEventListener('submit', function (event) {
@@ -173,6 +201,22 @@ form.addEventListener('submit', function (event) {
 button.addEventListener('click', function (event) {
   event.preventDefault();
   nextStep();
+});
+
+spanButtons.forEach((spanButton) => {
+  spanButton.addEventListener('click', function (event) {
+    event.preventDefault;
+    let targetStep = parseInt(spanButton.dataset.step); //converst to a number
+    if (targetStep < currentStep) {
+      currentStep = targetStep;
+      prevStep();
+    } else if (targetStep > currentStep) {
+      if (checkInputs(currentStep)) {
+        currentStep = targetStep;
+        nextStep();
+      }
+    }
+  });
 });
 
 showStep(currentStep);
