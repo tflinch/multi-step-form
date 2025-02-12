@@ -98,6 +98,7 @@
   }
 
   form {
+    display: grid;
     background: var(--clr-black);
     padding: 2rem 1.5rem;
     border: 0.2rem solid var(--clr-purple-border);

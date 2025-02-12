@@ -40,6 +40,7 @@ function checkInputs(setp) {
     case 2:
       verifySelection();
       break;
+    case 3:
 
     default:
       break;
@@ -90,6 +91,23 @@ function updateLabels(setp) {
         selector.appendChild(option);
       }
       break;
+    case 3:
+      title.innerHTML = mockSteps[2].title;
+      inputBox.innerHTML = '';
+      const span = document.createElement('span');
+      span.innerHTML = `Name: ${state.name}`;
+      const span2 = document.createElement('span');
+      span2.innerHTML = `Email: ${state.email}`;
+      const span3 = document.createElement('span');
+      span3.innerHTML = 'Topics';
+      const list = document.createElement('ul');
+      const listdata = state.topics.map((element) => {
+        const item = document.createElement('li');
+        item.innerHTML = element;
+        return item;
+      });
+      listdata.forEach((item) => list.appendChild(item));
+      inputBox.append(span, span2, span3, list);
 
     default:
       break;
@@ -126,6 +144,13 @@ function verifySelection() {
   const selected = Array.from(selector.selectedOptions).map((option) => {
     return option.value;
   });
+
+  // const selected = [];
+  // for (let i = 0; i < selector.options.length; i++) {
+  //   if (selector.options[i].selected) {
+  //     selected.push(selector.options[i].value);
+  //   }
+  // }
   if (selected.length === 0) {
     console.log('Please select at least one option');
     isValid = false;
