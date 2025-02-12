@@ -10,17 +10,20 @@ let mockSteps = [
   { title: 'Summary', name: '', email: '', topcis: [''] },
 ];
 
+let state = {};
+
 let currentStep = 1;
 
 function showStep(setp) {
+  console.log(setp);
   updateLabels(setp);
-  updateInput();
 }
 
 function nextStep() {
-  checkInputs();
+  checkInputs(currentStep);
   currentStep++;
-  showStep();
+  console.log('Current Step:', currentStep);
+  showStep(currentStep);
 
   //handle next step function
 }
@@ -29,39 +32,26 @@ function prevStep() {
   //handles previous step function
 }
 
-function checkInputs() {
-  const items = document.querySelectorAll('.input');
-  let isValid = true;
+function checkInputs(setp) {
+  switch (setp) {
+    case 1:
+      verifyInputs();
+      break;
+    case 2:
+      verifySelection();
+      break;
 
-  const stepData = {};
-
-  items.forEach((element) => {
-    if (element.value.trim() === '') {
-      console.log(`${element.name} cannot be blank`);
-      element.classList.add('error');
-      isValid = false;
-    }
-    element.classList.remove('error');
-    //update state
-    stepData[element.name] = element.value;
-  });
-
-  if (isValid) {
-    Object.assign(mockSteps[currentStep - 1], stepData);
-    console.log('Updated Step Data:', mockSteps[currentStep - 1]);
+    default:
+      break;
   }
-
-  // for (const item of items){
-  //   console.log(item.value)
-  // }
 }
 
 function updateLabels(setp) {
   const inputBox = document.querySelector('.input-box');
   const labels = document.querySelectorAll('.label');
+  const title = document.getElementById('title');
   switch (setp) {
     case 1:
-      const title = document.getElementById('title');
       title.innerHTML = mockSteps[setp - 1].title;
       const newLabel = document.createElement('label');
       newLabel.setAttribute('for', 'name');
@@ -84,24 +74,10 @@ function updateLabels(setp) {
       newInput2.classList.add('input');
 
       inputBox.append(newLabel, newInput, newLabel2, newInput2);
-    case 2:
-      for (const label of labels) {
-        label.remove();
-      }
 
-    default:
-      break;
-  }
-}
-function updateInput() {
-  const inputs = document.querySelectorAll('.input');
-  const inputBox = document.querySelector('.input-box');
-
-  switch (currentStep) {
-    case 1:
-      console.log('step 1');
       break;
     case 2:
+      title.innerHTML = mockSteps[setp - 1].title;
       inputBox.innerHTML = '';
       const selector = document.createElement('select');
       selector.setAttribute('multiple', 'multiple');
@@ -113,10 +89,49 @@ function updateInput() {
         option.text = mockSteps[1].choices[i];
         selector.appendChild(option);
       }
-      updateDot();
+      break;
 
     default:
       break;
+  }
+}
+function verifyInputs() {
+  const items = document.querySelectorAll('.input');
+  let isValid = true;
+
+  const stepData = {};
+
+  items.forEach((element) => {
+    if (element.value.trim() === '') {
+      console.log(`${element.name} cannot be blank`);
+      element.classList.add('error');
+      isValid = false;
+    }
+    element.classList.remove('error');
+    //update state
+    stepData[element.name] = element.value;
+  });
+
+  if (isValid) {
+    Object.assign(state, stepData);
+    console.log('Updated Step Data:', state);
+  }
+}
+
+function verifySelection() {
+  const selector = document.querySelector('select');
+  let isValid = true;
+  const stepData = {};
+  // Map through the selector and check if any of the options are selected
+  const selected = Array.from(selector.selectedOptions).map((option) => {
+    return option.value;
+  });
+  if (selected.length === 0) {
+    console.log('Please select at least one option');
+    isValid = false;
+  } else {
+    Object.assign(state, { topics: selected });
+    console.log('Updated Step Data:', state);
   }
 }
 
