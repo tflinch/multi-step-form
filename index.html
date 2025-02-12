@@ -1,34 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Multi-step Form</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="style.css" />
-  <title>Multi-step Form</title>
-</head>
-
-<body>
-  <h1>Multi step form</h1>
-  <div class="wrapper">
-    <form action="" id="multStepForm">
-      <h2>Register</h2>
-      <div class="input-box">
-        <label for="name" class="label">Name</label>
-        <input type="text" name="name" placeholder="Enter your name" required class="input" />
-        <label for="email" claass="label">Email</label>
-        <input type="email" name="email" placeholder="Example@gmail.com" class="input" />
+  <body>
+    <h1>Multi step form</h1>
+    <div class="wrapper">
+      <form action="" id="multStepForm">
+        <h2 id="title"></h2>
+        <div class="input-box"></div>
         <button id="button">Continue</button>
+      </form>
+      <div class="tracker" id="step">
+        <p>Step 1 of 3</p>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
       </div>
-    </form>
-    <div class="tracker" id="step">
-      <p>Step 1 of 3</p>
-      <span class="dot"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
     </div>
-  </div>
-</body>
-<script src="script.js"></script>
-
+  </body>
+  <script src="script.js"></script>
 </html>

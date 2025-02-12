@@ -1,5 +1,4 @@
 @layer reset {
-
   *,
   *,
   *::before,
@@ -68,9 +67,11 @@
 @layer base {
   :root {
     --clr-purple: linear-gradient(180deg, #845eee 0%, #652cd1 100%);
-    --clr-purple-border: linear-gradient(120deg,
-        rgba(229, 231, 235, 0.5) 0.05%,
-        rgba(229, 231, 235, 0) 25.05%);
+    --clr-purple-border: linear-gradient(
+      120deg,
+      rgba(229, 231, 235, 0.5) 0.05%,
+      rgba(229, 231, 235, 0) 25.05%
+    );
     --clr-deep-purple: hsl(222, 36%, 11%);
     --clr-black: hsl(217, 24%, 17%);
     --clr-grey: hsl(217, 15%, 28%);
@@ -133,8 +134,7 @@
   .tracker {
     justify-self: center;
     display: flex;
-    margin-block: .4rem;
-
+    margin-block: 0.4rem;
   }
 
   .dot {
@@ -143,6 +143,10 @@
     background-color: #bbb;
     border-radius: 50%;
     display: inline-block;
-    margin-inline: .5rem;
+    margin-inline: 0.5rem;
+  }
+
+  .active {
+    background-color: #845eee;
   }
 }
